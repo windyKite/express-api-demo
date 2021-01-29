@@ -20,7 +20,7 @@ app.use(express.urlencoded()) // 将请求 content-type=x-www-form-urlencoded �
 //   next()
 // })
 // 上面注释的和下面这一行相同功能
-app.use(fn1)
+// app.use(fn1)
 
 
 app.get('/style.css', (request, response, next) => {
@@ -48,14 +48,22 @@ app.patch('/test', (request, response, next) => {
   next()
 })
 
-app.use((request, response, next) => {
-  console.log('request.body')
-  console.log(request.body)
-  console.log(typeof request.body)  // object
+// express.json() 的实现
+// app.use((request, response, next) => {
+//   console.log('request.body')
+//   console.log(request.body)
+//   console.log(typeof request.body)  // object
+//   response.send('hi')
+//   request.on('data', (chunk) => {
+//     console.log(chunk.toString())
+//   })
+//   next()
+// })
+
+app.get('/users/:id', (request, response, next) => {
+  console.log('request.params')
+  console.log(request.params)
   response.send('hi')
-  request.on('data', (chunk) => {
-    console.log(chunk.toString())
-  })
   next()
 })
 
